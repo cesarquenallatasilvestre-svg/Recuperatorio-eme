@@ -38,3 +38,57 @@ btnAgregar.addEventListener("click", function () {
     mostrarContactos();
 
 });
+
+function mostrarContactos() {
+
+    listaContactos.innerHTML = "";
+
+    if (contactos.length === 0) {
+
+        listaContactos.innerHTML = `
+            <p class="mensaje-vacio">
+                Todavía no agregaste contactos.
+            </p>
+        `;
+
+        return;
+    }
+
+    contactos.forEach(function (contacto, indice) {
+
+        const elemento = document.createElement("div");
+
+        elemento.classList.add("contacto");
+
+        elemento.innerHTML = `
+            <div class="datos-contacto">
+                <span class="nombre-contacto">
+                    ${contacto.nombre}
+                </span>
+
+                <span class="telefono-contacto">
+                    ${contacto.telefono}
+                </span>
+            </div>
+
+            <button class="btnEliminar">
+                Eliminar
+            </button>
+        `;
+
+        listaContactos.appendChild(elemento);
+
+        // Botón eliminar de este contacto
+        const btnEliminar = elemento.querySelector(".btnEliminar");
+
+        btnEliminar.addEventListener("click", function () {
+
+            contactos.splice(indice, 1);
+
+            mostrarContactos();
+            actualizarContador();
+
+        });
+
+    });
+}
