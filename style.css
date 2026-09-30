@@ -91,3 +91,82 @@ input:focus {
 .busqueda input {
     font-size: 17px;
 }
+
+.lista {
+    margin-top: 35px;
+}
+
+#listaContactos {
+    min-height: 90px;
+}
+
+.mensaje-vacio {
+    text-align: center;
+
+    color: #737b77;
+
+    font-size: 17px;
+
+    margin: 50px 0;
+}
+
+.contacto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #e1e5e3;
+}
+
+.datos-contacto {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.nombre-contacto {
+    font-size: 18px;
+    font-weight: bold;
+
+    color: #303633;
+}
+
+.telefono-contacto {
+    font-size: 15px;
+
+    color: #737b77;
+}
+
+.btnEliminar {
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #c94c4c;
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.btnEliminar:hover {
+    background-color: #a93b3b;
+}
+
+.contador {
+    margin-top: 20px;
+    padding-top: 18px;
+
+    border-top: 1px solid #d9dedb;
+
+    color: #68706c;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
