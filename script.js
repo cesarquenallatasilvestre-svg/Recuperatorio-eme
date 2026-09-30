@@ -1,7 +1,8 @@
-// Array donde se guardarán los contactos
+// Array donde se guardan los contactos
 let contactos = [];
 
-// Obtener elementos del HTML
+
+// Elementos HTML
 const nombreInput = document.getElementById("nombre");
 const telefonoInput = document.getElementById("telefono");
 const btnAgregar = document.getElementById("btnAgregar");
@@ -9,11 +10,14 @@ const listaContactos = document.getElementById("listaContactos");
 const contador = document.getElementById("contador");
 const buscarInput = document.getElementById("buscar");
 
+
+// AGREGAR CONTACTO
 btnAgregar.addEventListener("click", function () {
 
     const nombre = nombreInput.value.trim();
     const telefono = telefonoInput.value.trim();
 
+    // No permitir campos vacíos
     if (nombre === "" || telefono === "") {
         return;
     }
@@ -33,51 +37,36 @@ btnAgregar.addEventListener("click", function () {
 
 });
 
-// Evento para agregar contacto
-btnAgregar.addEventListener("click", function () {
 
-    const nombre = nombreInput.value.trim();
-    const telefono = telefonoInput.value.trim();
-
-    // No permitir campos vacíos
-    if (nombre === "" || telefono === "") {
-        return;
-    }
-
-    // Crear objeto contacto
-    const contacto = {
-        nombre: nombre,
-        telefono: telefono
-    };
-
-    // Agregar al array
-    contactos.push(contacto);
-
-    // Limpiar inputs
-    nombreInput.value = "";
-    telefonoInput.value = "";
-
-    // Mostrar contactos
-    mostrarContactos();
-
-});
-
-function mostrarContactos() {
+// MOSTRAR CONTACTOS
+function mostrarContactos(lista = contactos) {
 
     listaContactos.innerHTML = "";
 
-    if (contactos.length === 0) {
+    if (lista.length === 0) {
 
-        listaContactos.innerHTML = `
-            <p class="mensaje-vacio">
-                Todavía no agregaste contactos.
-            </p>
-        `;
+        if (contactos.length === 0) {
+
+            listaContactos.innerHTML = `
+                <p class="mensaje-vacio">
+                    Todavía no agregaste contactos.
+                </p>
+            `;
+
+        } else {
+
+            listaContactos.innerHTML = `
+                <p class="mensaje-vacio">
+                    No se encontraron contactos.
+                </p>
+            `;
+
+        }
 
         return;
     }
 
-    contactos.forEach(function (contacto, indice) {
+    lista.forEach(function (contacto) {
 
         const elemento = document.createElement("div");
 
@@ -85,6 +74,7 @@ function mostrarContactos() {
 
         elemento.innerHTML = `
             <div class="datos-contacto">
+
                 <span class="nombre-contacto">
                     ${contacto.nombre}
                 </span>
@@ -92,6 +82,7 @@ function mostrarContactos() {
                 <span class="telefono-contacto">
                     ${contacto.telefono}
                 </span>
+
             </div>
 
             <button class="btnEliminar">
@@ -101,23 +92,50 @@ function mostrarContactos() {
 
         listaContactos.appendChild(elemento);
 
-        // Botón eliminar de este contacto
+
+        // EVENT LISTENER DEL BOTÓN ELIMINAR
         const btnEliminar = elemento.querySelector(".btnEliminar");
 
         btnEliminar.addEventListener("click", function () {
 
+            const indice = contactos.indexOf(contacto);
+
             contactos.splice(indice, 1);
 
             mostrarContactos();
+
             actualizarContador();
 
         });
 
     });
+
 }
 
+
+// ACTUALIZAR CONTADOR
 function actualizarContador() {
 
     contador.textContent = contactos.length;
 
 }
+
+
+// BUSCADOR EN TIEMPO REAL
+buscarInput.addEventListener("input", function () {
+
+    const texto = buscarInput.value
+        .toLowerCase()
+        .trim();
+
+    const contactosFiltrados = contactos.filter(function (contacto) {
+
+        return contacto.nombre
+            .toLowerCase()
+            .includes(texto);
+
+    });
+
+    mostrarContactos(contactosFiltrados);
+
+});
