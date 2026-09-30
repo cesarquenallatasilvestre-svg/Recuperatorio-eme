@@ -9,6 +9,29 @@ const listaContactos = document.getElementById("listaContactos");
 const contador = document.getElementById("contador");
 const buscarInput = document.getElementById("buscar");
 
+btnAgregar.addEventListener("click", function () {
+
+    const nombre = nombreInput.value.trim();
+    const telefono = telefonoInput.value.trim();
+
+    if (nombre === "" || telefono === "") {
+        return;
+    }
+
+    const contacto = {
+        nombre: nombre,
+        telefono: telefono
+    };
+
+    contactos.push(contacto);
+
+    nombreInput.value = "";
+    telefonoInput.value = "";
+
+    mostrarContactos();
+    actualizarContador();
+
+});
 
 // Evento para agregar contacto
 btnAgregar.addEventListener("click", function () {
@@ -91,4 +114,10 @@ function mostrarContactos() {
         });
 
     });
+}
+
+function actualizarContador() {
+
+    contador.textContent = contactos.length;
+
 }
