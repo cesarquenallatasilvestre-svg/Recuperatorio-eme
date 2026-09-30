@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: #f4f6f5;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 45px;
+}
+
+.contenedor {
+    width: 550px;
+
+    background-color: white;
+
+    border: 1px solid #d9dedb;
+    border-radius: 12px;
+
+    padding: 38px 40px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 32px;
+    color: #252a28;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d9dedb;
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #2d7568;
+}
+
+#btnAgregar {
+    width: 112px;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 9px;
+
+    background-color: #2d7568;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#btnAgregar:hover {
+    background-color: #256258;
+}
+
+.busqueda {
+    margin-top: 25px;
+}
+
+.busqueda input {
+    font-size: 17px;
+}
